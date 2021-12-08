@@ -37,4 +37,10 @@ public class CongViecController {
         congViec.setId(null);
         return ResponseEntity.ok(congViecRepository.save(congViec));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        congViecRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

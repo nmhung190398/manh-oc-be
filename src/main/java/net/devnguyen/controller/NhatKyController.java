@@ -37,4 +37,10 @@ public class NhatKyController {
         nhatKy.setId(null);
         return ResponseEntity.ok(nhatKyRepository.save(nhatKy));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        nhatKyRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

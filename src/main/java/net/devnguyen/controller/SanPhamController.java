@@ -37,4 +37,10 @@ public class SanPhamController {
         sanPham.setId(null);
         return ResponseEntity.ok(sanPhamRepository.save(sanPham));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        sanPhamRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

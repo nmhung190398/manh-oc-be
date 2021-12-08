@@ -29,4 +29,10 @@ public class NhanVien {
     private Long phongBanId;
 
     private Long chucVuId;
+
+    @Transient
+    private PhongBan phongBan;
+
+    @Transient
+    private ChucVu chucVu;
 }

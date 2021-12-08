@@ -34,6 +34,12 @@ public class ChucVuController {
         return ResponseEntity.ok(chucVuRepository.save(chucVu));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        chucVuRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("")
     public ResponseEntity<ChucVu> create(@RequestBody ChucVu chucVu){
         chucVu.setId(null);

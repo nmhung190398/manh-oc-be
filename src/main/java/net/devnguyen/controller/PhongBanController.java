@@ -37,4 +37,10 @@ public class PhongBanController {
         phongBan.setId(null);
         return ResponseEntity.ok(phongBanRepository.save(phongBan));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        phongBanRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -37,4 +37,10 @@ public class LoController {
         lo.setId(null);
         return ResponseEntity.ok(loRepository.save(lo));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        loRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -48,7 +48,7 @@ public abstract class AbstractSwaggerConfig {
     }
 
     protected String basePackage() {
-        return "com.evotek.tantum.identify";
+        return "net.devnguyen";
     }
 
     protected List<Parameter> defaultParameters() {

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 public class CongViec {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String tenCongViec;

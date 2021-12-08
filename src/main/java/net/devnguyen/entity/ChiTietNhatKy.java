@@ -19,6 +19,7 @@ public class ChiTietNhatKy {
     private String nhatKyId;
 
     private LocalDate startDate;
+
     private LocalDate endDate;
 
     private LocalTime startTime;

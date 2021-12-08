@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Data
 public class NhanVien {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate ngaySinh;

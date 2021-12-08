@@ -1,6 +1,7 @@
 package net.devnguyen.controller;
 
 import net.devnguyen.entity.ChucVu;
+import net.devnguyen.exception.errorcode.NotFoundException;
 import net.devnguyen.repository.ChucVuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,10 +28,7 @@ public class ChucVuController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<ChucVu> update(@PathVariable Long id,@RequestBody ChucVu chucVu){
-        var chucVuInDb = chucVuRepository.findById(id);
-        if(chucVuInDb.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
+        chucVuRepository.findById(id).orElseThrow(NotFoundException.DATA_NOT_FOUND::exception);
 
         chucVu.setId(id);
         return ResponseEntity.ok(chucVuRepository.save(chucVu));

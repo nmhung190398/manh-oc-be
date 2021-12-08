@@ -1,0 +1,57 @@
+spring:
+  profiles:
+    active: ${ENV:prod}
+  datasource:
+#mysql
+#    url: ${POSTGRESQL_URI:jdbc:mysql://${MYSQL_HOST:localhost}:3306/axie-manager}
+#    username: ${POSTGRESQL_USER:root}
+#    password: ${POSTGRESQL_PASSWORD:123456}
+    #h2
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+
+    #sql server
+#    url: jdbc:sqlserver://sqlsrv\\sqlexpress;databaseName=customer
+#    username: username
+#    password: password
+#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#h2
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+
+#sql-server
+#    database: sql_server
+#    database-platform: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 10003
+  url : 'http://localhost:${server.port}'
+
+management:
+  health:
+    defaults:
+      enabled: false
+  endpoints:
+    enabled-by-default: false
+    health:
+      enabled: false
+    web:
+      exposure:
+        include: [ ]
+      cors:
+        allowed-origins: ${CORS_ORIGINS:*}
+        allowed-methods: ${CORS_METHODS:*}
+        allowed-headers: ${CORS_HEADERS:*}
+  #        allow-credentials: ${CORS_CREDENTIALS:false}
+  endpoint:
+    info:
+      enabled: false

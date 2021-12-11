@@ -7,9 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class CorsConfigurer {
+public class CorsConfigurer{
 
     private final CorsEndpointProperties corsProperties;
 
@@ -32,6 +33,7 @@ public class CorsConfigurer {
         configuration.setAllowedOrigins(corsProperties.getAllowedOrigins());
         configuration.setAllowedMethods(corsProperties.getAllowedMethods());
         configuration.setAllowedHeaders(corsProperties.getAllowedHeaders());
+        configuration.setMaxAge(corsProperties.getMaxAge());
         return configuration;
     }
 }

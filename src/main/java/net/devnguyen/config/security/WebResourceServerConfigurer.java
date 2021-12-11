@@ -1,54 +1,51 @@
-//package net.devnguyen.config.security;
-//
-//import lombok.extern.slf4j.Slf4j;
-//import net.devnguyen.axiemanagement.config.security.configuration.SecurityConfig;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-//import org.springframework.security.config.http.SessionCreationPolicy;
-//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-//
-//import java.util.List;
-//import java.util.Objects;
-//import java.util.concurrent.atomic.AtomicReference;
-//import java.util.function.BiConsumer;
-//import java.util.function.Consumer;
-//import java.util.stream.Collectors;
-//
-//@Slf4j
-//@Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//public class WebResourceServerConfigurer extends WebSecurityConfigurerAdapter {
-//
+package net.devnguyen.config.security;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebResourceServerConfigurer extends WebSecurityConfigurerAdapter {
+
 //    private final SecurityConfig securityConfig;
 //    private final CustomAuthenticationFilter customAuthenticationFilter;
-//
-//    @Autowired
-//    public WebResourceServerConfigurer(
-//            SecurityConfig securityConfig,
-//            CustomAuthenticationFilter customAuthenticationFilter) {
-//        this.securityConfig = securityConfig;
-//        this.customAuthenticationFilter = customAuthenticationFilter;
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
+
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 //        configureAuthorizeRequests(http)
-//                .cors()
-//                .and()
-//                .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//        ;
-////        http.addFilterBefore(addTokenInParamAuthenticationFilter, BearerTokenAuthenticationFilter.class);
+        http.authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .cors()
+                .and()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        ;
+//        http.addFilterBefore(addTokenInParamAuthenticationFilter, BearerTokenAuthenticationFilter.class);
 //        http.addFilterAfter(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-//    }
-//
+    }
+
 //    private HttpSecurity configureAuthorizeRequests(HttpSecurity http) throws Exception {
 //        AtomicReference<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequests =
 //                new AtomicReference<>(http.authorizeRequests());
@@ -64,7 +61,7 @@
 //                .antMatchers("/**").authenticated()
 //                .and();
 //    }
-//
+
 //    private void applyMatcherConfig(
 //            Consumer<HttpMethod> applyPermitAllMethod,
 //            Consumer<List<String>> applyPermitAllPaths,
@@ -95,4 +92,4 @@
 //            log.warn("pathMatcherConfig null");
 //        }
 //    }
-//}
+}

@@ -51,7 +51,8 @@ management:
         allowed-origins: ${CORS_ORIGINS:*}
         allowed-methods: ${CORS_METHODS:*}
         allowed-headers: ${CORS_HEADERS:*}
-  #        allow-credentials: ${CORS_CREDENTIALS:false}
+        allow-credentials: ${CORS_CREDENTIALS:false}
+        max-age: 3600
   endpoint:
     info:
       enabled: false
